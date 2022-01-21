@@ -1,5 +1,5 @@
 <div align="center">
-<img src="https://github.com/NabilOuldHamou/eQuipt/blob/master/src/main/resources/images/eQuipt-Logo.png?raw=true" width="50%"/>
+<img src="https://github.com/BenGregory23/Umbrella/blob/master/core/assets/img/damn.jpeg?raw=true" width="50%"/>
 </div>
 
 <!-- TABLE OF CONTENTS -->
