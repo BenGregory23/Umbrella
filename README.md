@@ -1,5 +1,5 @@
 <div align="center">
-<img src="https://github.com/BenGregory23/Umbrella/blob/master/core/assets/img/damn.jpeg?raw=true" width="50%"/>
+<img src="https://img.search.brave.com/3IuIZrPmpURgcNDDMrLxxrMO4NyjohhTOKw73PX0zQM/rs:fit:512:256:1/g:ce/aHR0cDovLzIuYnAu/YmxvZ3Nwb3QuY29t/Ly1xWkZhMHdxMl9D/RS9VNnFHVzQ3MVU0/SS9BQUFBQUFBQUZs/RS91SnE5N0xTUmFM/Zy9zMTYwMC9saWJn/ZHguanBn" width="50%"/>
 </div>
 
 <!-- TABLE OF CONTENTS -->
