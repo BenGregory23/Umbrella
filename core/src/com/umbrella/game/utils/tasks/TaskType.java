@@ -1,4 +1,4 @@
-package com.umbrella.game.utils.threads;
+package com.umbrella.game.utils.tasks;
 
 public enum TaskType {
     DEFAULT(),
