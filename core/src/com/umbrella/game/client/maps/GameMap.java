@@ -1,77 +1,82 @@
 package com.umbrella.game.client.maps;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.maps.MapLayers;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
-import com.badlogic.gdx.utils.ScreenUtils;
+
+import java.util.Arrays;
 
 public class GameMap {
 
-    private TiledMap tiledMap;
-    private TiledMapRenderer renderer;
-    private OrthographicCamera camera;
-    private MapTextures mapTextures;
+    private int[][] map;
 
-    public GameMap(int[][] map) {
+    final private int maxWidth;
+    final private int maxHeight;
 
-        float width = Gdx.graphics.getWidth();
-        float height = Gdx.graphics.getHeight();
+    public GameMap(int maxWidth, int maxHeight) {
 
-        this.mapTextures = new MapTextures();
+        this.maxWidth = maxWidth;
+        this.maxHeight = maxHeight;
 
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, (width / height) * 320, 320);
-        camera.update();
+        map = new int[maxHeight][maxWidth];
+    }
 
-        {
+    public void generateRandom() {
 
-            tiledMap = new TiledMap();
-            MapLayers layers = tiledMap.getLayers();
-            for (int i = 0; i < 1; i++) {
+        int topWall = 2;
+        int bottomWall = (maxHeight - 3);
 
-                int tileWidth = (int)(width / 32);
-                int tileHeight = (int)(height / 32);
+        int leftWall = 2;
+        int rightWall = maxWidth - 3;
 
-                TiledMapTileLayer layer = new TiledMapTileLayer(tileWidth, tileHeight, 32, 32);
+        for (int x = 0; x < maxWidth; x++) {
+            for (int y = 0; y < maxHeight; y++) {
 
-                for (int x = 0; x < tileWidth; x++) {
-                    for (int y = 0; y < tileHeight; y++) {
-                        Cell cell = new Cell();
+                if (y == topWall || y == bottomWall) {
 
-                        if (y == 5) {
-                            cell.setTile(new StaticTiledMapTile(mapTextures.getWall()));
-                        } else {
-                            cell.setTile(new StaticTiledMapTile(mapTextures.getGround()));
-                        }
+                    map[y][x] = 2;
 
-                        layer.setCell(x, y, cell);
-                    }
+                } else if (x == leftWall || x == rightWall ) {
+                    map[y][x] = 2;
+
+                }  else {
+                    map[y][x] = 1;
                 }
 
-                layers.add(layer);
-            }
+                if (x > rightWall || x < leftWall || y < topWall || y > bottomWall) {
+                    map[y][x] = 0;
+                }
 
+            }
         }
 
-        renderer = new OrthogonalTiledMapRenderer(tiledMap);
+        for (int i = 0; i < map.length; i++) {
 
+            for (int j = 0; j < map[0].length; j++) {
+
+                System.out.print(String.format(" %d ", map[i][j]));
+
+            }
+            System.out.println("");
+        }
     }
 
-    public void render() {
-        ScreenUtils.clear(0, 0, 0, 1);
-        camera.update();
-        renderer.setView(camera);
-        renderer.render();
+    /**
+     * The map size needs to be the same than the maximum height and width.
+     * These values can be obtained using the getMaxWidth and getMaxHeight.
+     * @param map - Data of the map to generate.
+     */
+    public void setMap(int[][] map) {
+        this.map = map;
     }
 
+    public int[][] getMap() {
+        return map;
+    }
+
+    public int getMaxHeight() {
+        return maxHeight;
+    }
+
+    public int getMaxWidth() {
+        return maxWidth;
+    }
 }

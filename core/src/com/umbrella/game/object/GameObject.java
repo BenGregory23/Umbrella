@@ -7,6 +7,7 @@ public class GameObject {
     private Texture texture;
     private double x;
     private double y;
+    private double rotation;
 
     public GameObject(String name, Texture img){
         this.name = name;
@@ -27,6 +28,10 @@ public class GameObject {
 
     public double getY(){
         return y;
+    }
+
+    public double getRotation() {
+        return rotation;
     }
 
     public String toString(){
