@@ -1,12 +1,12 @@
 package com.umbrella.game.client.maps;
 
-import com.badlogic.gdx.Gdx;
-
-import java.util.Arrays;
+import com.umbrella.game.utils.Utils;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameMap {
 
-    private int[][] map;
+    private Tile[][] tileMap;
 
     final private int maxWidth;
     final private int maxHeight;
@@ -16,7 +16,7 @@ public class GameMap {
         this.maxWidth = maxWidth;
         this.maxHeight = maxHeight;
 
-        map = new int[maxHeight][maxWidth];
+        tileMap = new Tile[maxHeight][maxWidth];
     }
 
     public void generateRandom() {
@@ -32,31 +32,42 @@ public class GameMap {
 
                 if (y == topWall || y == bottomWall) {
 
-                    map[y][x] = 2;
+                    tileMap[y][x] = new Tile("wall", "maps/wall.png",
+                            32*x, 32*y,
+                            true, false, false);
 
                 } else if (x == leftWall || x == rightWall ) {
-                    map[y][x] = 2;
+
+                    tileMap[y][x] = new Tile("wall", "maps/wall.png",
+                            32*x, 32*y,
+                            true, false, false);
 
                 }  else {
-                    map[y][x] = 1;
+                    tileMap[y][x] = new Tile("ground", "maps/ground.png",
+                            32*x, 32*y,
+                            false, false, false);
                 }
 
                 if (x > rightWall || x < leftWall || y < topWall || y > bottomWall) {
-                    map[y][x] = 0;
+                    tileMap[y][x] = null;
                 }
 
             }
         }
 
-        for (int i = 0; i < map.length; i++) {
+        populateMap();
+    }
 
-            for (int j = 0; j < map[0].length; j++) {
+    private void populateMap() {
+        int amount = Utils.randomNumberInRange(1, 20);
 
-                System.out.print(String.format(" %d ", map[i][j]));
+        for (int i = 0; i < amount; i++) {
+            int x = Utils.randomNumberInRange(4, 36);
+            int y = Utils.randomNumberInRange(4, 19);
 
-            }
-            System.out.println("");
+            tileMap[y][x] = null;
         }
+
     }
 
     /**
@@ -64,12 +75,22 @@ public class GameMap {
      * These values can be obtained using the getMaxWidth and getMaxHeight.
      * @param map - Data of the map to generate.
      */
-    public void setMap(int[][] map) {
-        this.map = map;
+    public void setMap(Tile[][] map) {
+        this.tileMap = map;
     }
 
-    public int[][] getMap() {
-        return map;
+    public List<Tile> getTiles() {
+        List<Tile> tiles = new ArrayList<>();
+        for (int i = 0; i < maxWidth; i++) {
+            for (int j = 0; j < maxHeight; j++) {
+                tiles.add(tileMap[j][i]);
+            }
+        }
+        return tiles;
+    }
+
+    public Tile[][] getMap() {
+        return tileMap;
     }
 
     public int getMaxHeight() {
