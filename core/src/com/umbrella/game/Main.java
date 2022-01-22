@@ -12,6 +12,7 @@ import com.umbrella.game.utils.tasks.ThreadsManager;
 public class Main extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
+	GameObject go;
 	ThreadsManager tasksManager;
 	GameMap gameMap;
 	
