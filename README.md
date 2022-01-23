@@ -36,9 +36,8 @@ Rogue-Like
 
 ### Built With
 
-* [Java 16](https://openjdk.java.net/)
-* [JavaFX](https://openjfx.io/)
-* [MySQL Connector](https://mvnrepository.com/artifact/mysql/mysql-connector-java/5.1.13)
+* [Java 8](https://openjdk.java.net/)
+* [Libgdx](https://libgdx.com/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -50,17 +49,6 @@ Rogue-Like
 To try the project you are going to need a mysql database that you can create using the `database.sql` file located in
 the `database` folder. Then you can just run the program found in the release tab of the repo.
 
-### Prerequisites
-
-You are going to need a MySQL database, and java version 16.
-Everything is compiled in the release version.
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-**THIS PROJECT IS NOT MEANT FOR A REAL WORLD USE AS IT IS ONLY A PROJECT FOR MY COMPUTER SCIENCE COURSE.**
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
