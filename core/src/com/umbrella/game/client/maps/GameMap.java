@@ -1,77 +1,103 @@
 package com.umbrella.game.client.maps;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.maps.MapLayers;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
-import com.badlogic.gdx.utils.ScreenUtils;
+import com.umbrella.game.utils.Utils;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameMap {
 
-    private TiledMap tiledMap;
-    private TiledMapRenderer renderer;
-    private OrthographicCamera camera;
-    private MapTextures mapTextures;
+    private Tile[][] tileMap;
 
-    public GameMap(int[][] map) {
+    final private int maxWidth;
+    final private int maxHeight;
 
-        float width = Gdx.graphics.getWidth();
-        float height = Gdx.graphics.getHeight();
+    public GameMap(int maxWidth, int maxHeight) {
 
-        this.mapTextures = new MapTextures();
+        this.maxWidth = maxWidth;
+        this.maxHeight = maxHeight;
 
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, (width / height) * 320, 320);
-        camera.update();
+        tileMap = new Tile[maxHeight][maxWidth];
+    }
 
-        {
+    public void generateRandom() {
 
-            tiledMap = new TiledMap();
-            MapLayers layers = tiledMap.getLayers();
-            for (int i = 0; i < 1; i++) {
+        int topWall = 2;
+        int bottomWall = (maxHeight - 3);
 
-                int tileWidth = (int)(width / 32);
-                int tileHeight = (int)(height / 32);
+        int leftWall = 2;
+        int rightWall = maxWidth - 3;
 
-                TiledMapTileLayer layer = new TiledMapTileLayer(tileWidth, tileHeight, 32, 32);
+        for (int x = 0; x < maxWidth; x++) {
+            for (int y = 0; y < maxHeight; y++) {
 
-                for (int x = 0; x < tileWidth; x++) {
-                    for (int y = 0; y < tileHeight; y++) {
-                        Cell cell = new Cell();
+                if (y == topWall || y == bottomWall) {
 
-                        if (y == 5) {
-                            cell.setTile(new StaticTiledMapTile(mapTextures.getWall()));
-                        } else {
-                            cell.setTile(new StaticTiledMapTile(mapTextures.getGround()));
-                        }
+                    tileMap[y][x] = new Tile("wall", "maps/wall.png",
+                            32*x, 32*y,
+                            true, false, false);
 
-                        layer.setCell(x, y, cell);
-                    }
+                } else if (x == leftWall || x == rightWall ) {
+
+                    tileMap[y][x] = new Tile("wall", "maps/wall.png",
+                            32*x, 32*y,
+                            true, false, false);
+
+                }  else {
+                    tileMap[y][x] = new Tile("ground", "maps/ground.png",
+                            32*x, 32*y,
+                            false, false, false);
                 }
 
-                layers.add(layer);
-            }
+                if (x > rightWall || x < leftWall || y < topWall || y > bottomWall) {
+                    tileMap[y][x] = null;
+                }
 
+            }
         }
 
-        renderer = new OrthogonalTiledMapRenderer(tiledMap);
+        populateMap();
+    }
+
+    private void populateMap() {
+        int amount = Utils.randomNumberInRange(1, 20);
+
+        for (int i = 0; i < amount; i++) {
+            int x = Utils.randomNumberInRange(4, 36);
+            int y = Utils.randomNumberInRange(4, 19);
+
+            tileMap[y][x] = null;
+        }
 
     }
 
-    public void render() {
-        ScreenUtils.clear(0, 0, 0, 1);
-        camera.update();
-        renderer.setView(camera);
-        renderer.render();
+    /**
+     * The map size needs to be the same than the maximum height and width.
+     * These values can be obtained using the getMaxWidth and getMaxHeight.
+     * @param map - Data of the map to generate.
+     */
+    public void setMap(Tile[][] map) {
+        this.tileMap = map;
     }
 
+    public List<Tile> getTiles() {
+        List<Tile> tiles = new ArrayList<>();
+        for (int i = 0; i < maxWidth; i++) {
+            for (int j = 0; j < maxHeight; j++) {
+                tiles.add(tileMap[j][i]);
+            }
+        }
+        return tiles;
+    }
+
+    public Tile[][] getMap() {
+        return tileMap;
+    }
+
+    public int getMaxHeight() {
+        return maxHeight;
+    }
+
+    public int getMaxWidth() {
+        return maxWidth;
+    }
 }

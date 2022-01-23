@@ -8,7 +8,12 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.title = "Umbrella";
-		config.fullscreen = true;
+
+		config.width = 1280;
+		config.height = 720;
+
+		config.fullscreen = false;
+
 		new LwjglApplication(new Main(), config);
 	}
 }
