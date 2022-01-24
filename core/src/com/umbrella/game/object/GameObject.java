@@ -49,12 +49,24 @@ public class GameObject {
         return texture;
     }
 
+    public void setTexture(Texture texture){
+        this.texture = texture;
+    }
+
     public double getX(){
         return x;
     }
 
+    public void setX(double x){
+        this.x = x;
+    }
+
     public double getY(){
         return y;
+    }
+
+    public void setY(double y){
+        this.y = y;
     }
 
     public double getRotation() {
