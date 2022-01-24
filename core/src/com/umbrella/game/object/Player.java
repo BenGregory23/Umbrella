@@ -7,6 +7,10 @@ public class Player extends GameObject{
     private double damage;
     private float speedX;
     private float speedY;
+    private boolean isFacingUp;
+    private boolean isFacingDown = true;
+    private boolean isFacingRight;
+    private boolean isFacingLeft;
 
     public Player(String name, Texture img, double life, double damage) {
         super(name, img);
@@ -43,4 +47,10 @@ public class Player extends GameObject{
     public void setSpeedY(float speedY){
         this.speedY = speedY;
     }
+
+    public void setDirectionTexture(String direction){
+        setTexture(new Texture(String.format("img/player/dwarf/%s.png",direction)));
+    }
+
+
 }
