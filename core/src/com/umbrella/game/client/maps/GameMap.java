@@ -1,5 +1,7 @@
 package com.umbrella.game.client.maps;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.umbrella.game.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,10 +10,14 @@ public class GameMap {
 
     private Tile[][] tileMap;
 
+    private TextureRegion[][] region;
+
     final private int maxWidth;
     final private int maxHeight;
 
     public GameMap(int maxWidth, int maxHeight) {
+
+        region = TextureRegion.split(new Texture("maps/tilemap.png"), 16, 16);
 
         this.maxWidth = maxWidth;
         this.maxHeight = maxHeight;
@@ -21,8 +27,8 @@ public class GameMap {
 
     public void generateRandom() {
 
-        int topWall = 2;
-        int bottomWall = (maxHeight - 3);
+        int bottomWall = 2;
+        int topWall = (maxHeight - 3);
 
         int leftWall = 2;
         int rightWall = maxWidth - 3;
@@ -30,25 +36,49 @@ public class GameMap {
         for (int x = 0; x < maxWidth; x++) {
             for (int y = 0; y < maxHeight; y++) {
 
-                if (y == topWall || y == bottomWall) {
-
-                    tileMap[y][x] = new Tile("wall", "maps/wall.png",
-                            32*x, 32*y,
+                if (y == topWall && x == leftWall) {
+                    tileMap[y][x] = new Tile("wall", region[0][2],
+                            16*x, 16*y,
                             true, false, false);
-
-                } else if (x == leftWall || x == rightWall ) {
-
-                    tileMap[y][x] = new Tile("wall", "maps/wall.png",
-                            32*x, 32*y,
+                } else if (y == topWall && x == rightWall) {
+                    tileMap[y][x] = new Tile("wall", region[0][4],
+                            16*x, 16*y,
                             true, false, false);
-
-                }  else {
-                    tileMap[y][x] = new Tile("ground", "maps/ground.png",
-                            32*x, 32*y,
-                            false, false, false);
+                } else if (y == topWall) {
+                    tileMap[y][x] = new Tile("wall", region[0][3],
+                            16 * x, 16 * y,
+                            true, false, false);
+                } else if (y == (topWall-1) && (x != leftWall && x != rightWall)) {
+                    tileMap[y][x] = new Tile("wall", region[1][3],
+                            16 * x, 16 * y,
+                            true, false, false);
+                } else if (y == bottomWall && x == rightWall) {
+                    tileMap[y][x] = new Tile("wall", region[1][4],
+                            16*x, 16*y,
+                            true, false, false);
+                } else if (y == bottomWall && x == leftWall) {
+                    tileMap[y][x] = new Tile("wall", region[2][2],
+                            16*x, 16*y,
+                            true, false, false);
+                } else if (y == bottomWall) {
+                    tileMap[y][x] = new Tile("wall", region[0][3],
+                            16*x, 16*y,
+                            true, false, false);
+                } else if (x == rightWall) {
+                    tileMap[y][x] = new Tile("wall", region[1][2],
+                            16*x, 16*y,
+                            true, false, false);
+                } else if (x == leftWall) {
+                    tileMap[y][x] = new Tile("wall", region[1][2],
+                            16*x, 16*y,
+                            true, false, false);
+                } else {
+                    tileMap[y][x] = new Tile("ground", region[9][0],
+                            16*x, 16*y,
+                            true, false, false);
                 }
 
-                if (x > rightWall || x < leftWall || y < topWall || y > bottomWall) {
+                if (x < leftWall || x > rightWall || y > topWall || y < bottomWall) {
                     tileMap[y][x] = null;
                 }
 
@@ -59,11 +89,11 @@ public class GameMap {
     }
 
     private void populateMap() {
-        int amount = Utils.randomNumberInRange(1, 20);
+        int amount = Utils.randomNumberInRange(5, 30);
 
         for (int i = 0; i < amount; i++) {
             int x = Utils.randomNumberInRange(4, 36);
-            int y = Utils.randomNumberInRange(4, 19);
+            int y = Utils.randomNumberInRange(5, 19);
 
             tileMap[y][x] = null;
         }
