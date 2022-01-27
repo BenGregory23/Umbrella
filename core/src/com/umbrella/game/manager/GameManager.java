@@ -1,22 +1,23 @@
 package com.umbrella.game.manager;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.umbrella.game.client.UserInput;
-import com.umbrella.game.object.GameObject;
-import com.umbrella.game.object.Player;
+import com.umbrella.game.object.AnimateObject;
+import com.umbrella.game.player.Player;
 
 public class GameManager {
     private static GameManager gameManager;
     private Player player;
     private UserInput userInput;
     private SpriteBatch batch = new SpriteBatch();
+    private AnimateObject playerAnimation;
 
     private GameManager(){
         player = new Player("player", new Texture("img/player/dwarf/down.png"), 100, 20);
         userInput = new UserInput();
-
+        playerAnimation = new AnimateObject(new Texture("img/player/dwarf/walkCycle-30x60.png"), new Texture("img/player/dwarf/walkCycle-30x60.png"), 60, 60, 4, player);
+        playerAnimation.splitTexture();
     }
 
     public static GameManager getInstance(){
@@ -29,7 +30,10 @@ public class GameManager {
 
     public void gameLoop(){
         userInput.input();
-        player.render();
+        if(player.getSpeedX() == 0 && player.getSpeedY() == 0)  player.render();
+        System.out.println("PLAYER " + player.getX() + "  " + player.getY());
+
+
     }
 
     public Player getPlayer(){
@@ -38,6 +42,10 @@ public class GameManager {
 
     public UserInput getUserInput(){
         return userInput;
+    }
+
+    public AnimateObject getPlayerAnimation(){
+        return playerAnimation;
     }
 
 }

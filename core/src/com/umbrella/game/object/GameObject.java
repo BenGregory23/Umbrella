@@ -8,8 +8,8 @@ public class GameObject {
     private SpriteBatch batch;
     private String name;
     private Texture texture;
-    protected double x;
-    protected double y;
+    protected float x;
+    protected float y;
     protected double rotation;
 
     public GameObject(String name, Texture img){
@@ -19,7 +19,7 @@ public class GameObject {
         this.batch = new SpriteBatch();
     }
 
-    public GameObject(String name, String path, double x, double y){
+    public GameObject(String name, String path, float x, float y){
         this.name = name;
         this.texture = new Texture(path);
         this.batch = new SpriteBatch();
@@ -53,19 +53,19 @@ public class GameObject {
         this.texture = texture;
     }
 
-    public double getX(){
+    public float getX(){
         return x;
     }
 
-    public void setX(double x){
+    public void setX(float x){
         this.x = x;
     }
 
-    public double getY(){
+    public float getY(){
         return y;
     }
 
-    public void setY(double y){
+    public void setY(float y){
         this.y = y;
     }
 

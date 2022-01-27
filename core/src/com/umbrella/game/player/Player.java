@@ -1,16 +1,13 @@
-package com.umbrella.game.object;
+package com.umbrella.game.player;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.umbrella.game.object.GameObject;
 
-public class Player extends GameObject{
+public class Player extends GameObject {
     private double life;
     private double damage;
     private float speedX;
     private float speedY;
-    private boolean isFacingUp;
-    private boolean isFacingDown = true;
-    private boolean isFacingRight;
-    private boolean isFacingLeft;
 
     public Player(String name, Texture img, double life, double damage) {
         super(name, img);
@@ -51,6 +48,8 @@ public class Player extends GameObject{
     public void setDirectionTexture(String direction){
         setTexture(new Texture(String.format("img/player/dwarf/%s.png",direction)));
     }
+
+
 
 
 }

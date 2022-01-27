@@ -12,14 +12,13 @@ import com.umbrella.game.utils.tasks.ThreadsManager;
 
 
 public class Main extends ApplicationAdapter {
-	GameObject go;
 	ThreadsManager tasksManager;
 	MapRenderer mapRenderer;
 	GameMap gameMap;
 	
 	@Override
 	public void create () {
-		go = new GameObject("test", new Texture("badlogic.jpg"));
+
 		tasksManager = new ThreadsManager(new InputThread());
 
 		gameMap = new GameMap(40, 23);
@@ -32,13 +31,10 @@ public class Main extends ApplicationAdapter {
 		ScreenUtils.clear(0, 0, 0, 1);
 		mapRenderer.render();
 		GameManager.getInstance().gameLoop();
-		//go.render();
 	}
 	
 	@Override
 	public void dispose () {
 		mapRenderer.dispose();
-
-		go.dispose();
 	}
 }

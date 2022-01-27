@@ -12,19 +12,23 @@ public class UserInput implements InputProcessor {
         if(Gdx.input.isKeyPressed(Input.Keys.Z)){
             GameManager.getInstance().getPlayer().setDirectionTexture("up");
             GameManager.getInstance().getPlayer().setSpeedY(5);
-
+            GameManager.getInstance().getPlayerAnimation().animateY();
         }
         else if(Gdx.input.isKeyPressed(Input.Keys.S)){
             GameManager.getInstance().getPlayer().setDirectionTexture("down");
+            GameManager.getInstance().getPlayerAnimation().animateY();
             GameManager.getInstance().getPlayer().setSpeedY(-5);
         }
 
         if(Gdx.input.isKeyPressed(Input.Keys.Q)){
-            GameManager.getInstance().getPlayer().setDirectionTexture("left");
+            //GameManager.getInstance().getPlayer().setDirectionTexture("left");
+
+            GameManager.getInstance().getPlayerAnimation().animateX(true);
             GameManager.getInstance().getPlayer().setSpeedX(-5);
         }
         else if(Gdx.input.isKeyPressed(Input.Keys.D)){
-            GameManager.getInstance().getPlayer().setDirectionTexture("right");
+            //GameManager.getInstance().getPlayer().setDirectionTexture("right");
+            GameManager.getInstance().getPlayerAnimation().animateX(false);
             GameManager.getInstance().getPlayer().setSpeedX(5);
         }
 
