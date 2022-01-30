@@ -1,4 +1,4 @@
-package com.umbrella.game.object;
+package com.umbrella.game.player;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.umbrella.game.player.Player;
 
-public class AnimateObject {
+public class AnimatePlayer {
     private SpriteBatch batch;
     private Texture cycleTextureX;
     private Texture cycleTextureY;
@@ -25,7 +25,7 @@ public class AnimateObject {
 
     private float elapsedTime;
 
-    public AnimateObject(Texture cycleTextureX, Texture cycleTextureY, int widthTexture, int heigthTexture, int nbFrames, Player player){
+    public AnimatePlayer(Texture cycleTextureX, Texture cycleTextureY, int widthTexture, int heigthTexture, int nbFrames, Player player){
         this.cycleTextureX = cycleTextureX;
         this.cycleTextureY = cycleTextureY;
         batch = new SpriteBatch();

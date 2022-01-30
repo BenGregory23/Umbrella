@@ -8,6 +8,7 @@ public class Player extends GameObject {
     private double damage;
     private float speedX;
     private float speedY;
+    private boolean isIdle;
 
     public Player(String name, Texture img, double life, double damage) {
         super(name, img);
@@ -45,10 +46,15 @@ public class Player extends GameObject {
         this.speedY = speedY;
     }
 
-    public void setDirectionTexture(String direction){
-        setTexture(new Texture(String.format("img/player/dwarf/%s.png",direction)));
+
+
+    public boolean getIdle(){
+        return isIdle;
     }
 
+    public void setIdle(boolean isIdle){
+        this.isIdle = isIdle;
+    }
 
 
 

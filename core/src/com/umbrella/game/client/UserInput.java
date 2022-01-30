@@ -3,32 +3,34 @@ package com.umbrella.game.client;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.Texture;
 import com.umbrella.game.manager.GameManager;
+import com.umbrella.game.player.DisplayPlayer;
+
+import java.io.DataInput;
 
 public class UserInput implements InputProcessor {
 
     public void input(){
 
         if(Gdx.input.isKeyPressed(Input.Keys.Z)){
-            GameManager.getInstance().getPlayer().setDirectionTexture("up");
+
             GameManager.getInstance().getPlayer().setSpeedY(5);
-            GameManager.getInstance().getPlayerAnimation().animateY();
+
         }
         else if(Gdx.input.isKeyPressed(Input.Keys.S)){
-            GameManager.getInstance().getPlayer().setDirectionTexture("down");
-            GameManager.getInstance().getPlayerAnimation().animateY();
+
+
             GameManager.getInstance().getPlayer().setSpeedY(-5);
         }
 
         if(Gdx.input.isKeyPressed(Input.Keys.Q)){
-            //GameManager.getInstance().getPlayer().setDirectionTexture("left");
 
-            GameManager.getInstance().getPlayerAnimation().animateX(true);
+
+
             GameManager.getInstance().getPlayer().setSpeedX(-5);
         }
         else if(Gdx.input.isKeyPressed(Input.Keys.D)){
-            //GameManager.getInstance().getPlayer().setDirectionTexture("right");
-            GameManager.getInstance().getPlayerAnimation().animateX(false);
             GameManager.getInstance().getPlayer().setSpeedX(5);
         }
 
@@ -45,8 +47,10 @@ public class UserInput implements InputProcessor {
 
     @Override
     public boolean keyUp(int keycode) {
+
         GameManager.getInstance().getPlayer().setSpeedX(0);
         GameManager.getInstance().getPlayer().setSpeedY(0);
+
         return false;
     }
 
@@ -79,4 +83,5 @@ public class UserInput implements InputProcessor {
     public boolean scrolled(float amountX, float amountY) {
         return false;
     }
+
 }

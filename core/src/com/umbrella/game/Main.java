@@ -24,6 +24,7 @@ public class Main extends ApplicationAdapter {
 		gameMap = new GameMap(40, 23);
 		gameMap.generateRandom();
 		mapRenderer = new MapRenderer(gameMap);
+		GameManager.getInstance().prepare();
 	}
 
 	@Override
