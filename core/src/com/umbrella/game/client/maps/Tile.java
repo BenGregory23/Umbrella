@@ -1,13 +1,10 @@
 package com.umbrella.game.client.maps;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.umbrella.game.object.GameObject;
 
-public class Tile extends GameObject {
-
-    private SpriteBatch batch;
+public class Tile {
 
     private boolean collidable;
 
@@ -17,9 +14,8 @@ public class Tile extends GameObject {
 
     public Tile(String name, TextureRegion region, int x, int y, boolean collidable,
                 boolean explodable, boolean destroyable) {
-        super(name, region, x, y);
+        //super(name, region, x, y);
 
-        this.batch = new SpriteBatch();
         this.collidable = collidable;
         this.explodable = explodable;
         this.destroyable = destroyable;
