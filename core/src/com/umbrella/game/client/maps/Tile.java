@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.umbrella.game.object.GameObject;
 
-public class Tile {
+public class Tile extends GameObject {
 
     private boolean collidable;
 
@@ -14,7 +14,7 @@ public class Tile {
 
     public Tile(String name, TextureRegion region, int x, int y, boolean collidable,
                 boolean explodable, boolean destroyable) {
-        //super(name, region, x, y);
+        super(name, region, x, y);
 
         this.collidable = collidable;
         this.explodable = explodable;

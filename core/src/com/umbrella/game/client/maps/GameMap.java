@@ -9,7 +9,6 @@ import java.util.List;
 public class GameMap {
 
     private Tile[][] tileMap;
-
     private TextureRegion[][] region;
 
     final private int maxWidth;
@@ -93,7 +92,7 @@ public class GameMap {
 
         for (int i = 0; i < amount; i++) {
             int x = Utils.randomNumberInRange(4, 36);
-            int y = Utils.randomNumberInRange(5, 19);
+            int y = Utils.randomNumberInRange(5, 18);
 
             tileMap[y][x] = null;
         }

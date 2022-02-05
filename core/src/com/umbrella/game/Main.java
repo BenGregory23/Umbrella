@@ -1,6 +1,7 @@
 package com.umbrella.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -13,6 +14,7 @@ import com.umbrella.game.utils.tasks.ThreadsManager;
 
 public class Main extends ApplicationAdapter {
 	SpriteBatch batch;
+	OrthographicCamera camera;
 	GameObject go;
 	ThreadsManager tasksManager;
 	MapRenderer mapRenderer;
@@ -27,14 +29,17 @@ public class Main extends ApplicationAdapter {
 		gameMap = new GameMap(40, 23);
 		gameMap.generateRandom();
 		mapRenderer = new MapRenderer(gameMap);
+
+		camera = new OrthographicCamera(gameMap.getMaxWidth(), gameMap.getMaxHeight());
 	}
 
 	@Override
 	public void render () {
 		ScreenUtils.clear(0, 0, 0, 1);
 		batch.begin();
-		mapRenderer.render();
-		//go.render(batch);
+		batch.setProjectionMatrix(camera.combined);
+		mapRenderer.render(batch);
+		go.render(batch);
 		batch.end();
 	}
 	

@@ -1,7 +1,11 @@
-<div align="center">
-<img src="https://img.search.brave.com/3IuIZrPmpURgcNDDMrLxxrMO4NyjohhTOKw73PX0zQM/rs:fit:512:256:1/g:ce/aHR0cDovLzIuYnAu/YmxvZ3Nwb3QuY29t/Ly1xWkZhMHdxMl9D/RS9VNnFHVzQ3MVU0/SS9BQUFBQUFBQUZs/RS91SnE5N0xTUmFM/Zy9zMTYwMC9saWJn/ZHguanBn" width="50%"/>
-</div>
-
+    $$\   $$\               $$\                           $$\ $$\           
+    $$ |  $$ |              $$ |                          $$ |$$ |          
+    $$ |  $$ |$$$$$$\$$$$\  $$$$$$$\   $$$$$$\   $$$$$$\  $$ |$$ | $$$$$$\  
+    $$ |  $$ |$$  _$$  _$$\ $$  __$$\ $$  __$$\ $$  __$$\ $$ |$$ | \____$$\
+    $$ |  $$ |$$ / $$ / $$ |$$ |  $$ |$$ |  \__|$$$$$$$$ |$$ |$$ | $$$$$$$ |
+    $$ |  $$ |$$ | $$ | $$ |$$ |  $$ |$$ |      $$   ____|$$ |$$ |$$  __$$ |
+    \$$$$$$  |$$ | $$ | $$ |$$$$$$$  |$$ |      \$$$$$$$\ $$ |$$ |\$$$$$$$ |
+    \______/ \__| \__| \__|\_______/ \__|       \_______|\__|\__| \_______|
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
@@ -28,7 +32,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-Rogue-Like
+This is a rogue like RPG game.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -36,9 +40,8 @@ Rogue-Like
 
 ### Built With
 
-* [Java 16](https://openjdk.java.net/)
-* [JavaFX](https://openjfx.io/)
-* [MySQL Connector](https://mvnrepository.com/artifact/mysql/mysql-connector-java/5.1.13)
+* [Java](https://openjdk.java.net/)
+* [LibGDX - Java Game Engine](https://libgdx.com/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
